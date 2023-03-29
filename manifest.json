@@ -1,0 +1,20 @@
+{
+  "name": "vfsfiller",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+  },
+  "permissions": [
+  ],
+  "content_scripts": [
+   {
+     "matches": ["*://*/*"],
+     "css": ["styles.css"],
+     "js": [
+        "options.js",
+        "content-script.js"
+      ]
+   }
+ ],
+ "action": {}
+}

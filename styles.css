@@ -1,0 +1,9 @@
+.buttonPanel {
+    position: absolute;
+    left: 50%;
+    top: 0px;
+}
+.buttonPanel button {
+    width: 2em;
+    height: 2em;
+}

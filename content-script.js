@@ -10,6 +10,25 @@ function createButton(name, onclick) {
     return button;
 }
 
+function reload() {
+    /*
+    const old_value = document.getElementById("SubVisaCategoryId").value
+    function reload2() {
+        document.getElementById("SubVisaCategoryId").value = old_value
+        document.getElementById("SubVisaCategoryId").click()
+    }
+    function reload1() {
+        document.getElementById("VisaCategoryId").value = 1273
+        setTimeout(reload2, 2000);
+    }
+    document.getElementById("SubVisaCategoryId").value = 0
+    document.getElementById("VisaCategoryId").value = 1274
+    setTimeout(reload1, 2000);
+    */
+    document.getElementById("btnContinue").disabled = false;
+    document.getElementById("btnContinue").click();
+}
+
 function fillData(customer) {
     return function() {
         console.log(customer);
@@ -29,6 +48,7 @@ function initButtons() {
     document.body.appendChild(panel);
 
     panel.appendChild(createButton("L", fillLogin));
+    panel.appendChild(createButton("R", reload));
     window.vfsoptions.customers.map(function (customer, i) {
         panel.appendChild(createButton(i, fillData(customer)));
     });

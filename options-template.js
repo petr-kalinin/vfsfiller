@@ -1,8 +1,10 @@
 window.vfsoptions = {
-    login: {
-        login: "foo",
-        password: "bar"
-    },
+    login: [
+        {
+            login: "foo",
+            password: "bar"
+        }
+    ],
     customers: [
         {
             passport: 123456,

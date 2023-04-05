@@ -1,6 +1,8 @@
-function fillLogin() {
-    document.getElementById("EmailId").value = window.vfsoptions.login.login;
-    document.getElementById("Password").value = window.vfsoptions.login.password;
+function fillLogin(data) {
+    return function() {
+        document.getElementById("EmailId").value = data.login;
+        document.getElementById("Password").value = data.password;
+    }
 }
 
 function createButton(name, onclick) {
@@ -31,7 +33,6 @@ function reload() {
 
 function fillData(customer) {
     return function() {
-        console.log(customer);
         document.getElementById("PassportNumber").value = customer.passport;
         document.getElementById("DateOfBirth").value = customer.birth_date;
         document.getElementById("PassportExpiryDate").value = customer.expiry;
@@ -47,7 +48,9 @@ function initButtons() {
     panel.classList.add("buttonPanel");
     document.body.appendChild(panel);
 
-    panel.appendChild(createButton("L", fillLogin));
+    window.vfsoptions.login.map(function (data, i) {
+        panel.appendChild(createButton("L" + i, fillLogin(data)));
+    });
     panel.appendChild(createButton("R", reload));
     window.vfsoptions.customers.map(function (customer, i) {
         panel.appendChild(createButton(i, fillData(customer)));

@@ -1,3 +1,7 @@
+function navigate() {
+    window.location.href = '/Global-Appoi||ntment/Account/Regi||steredLogin?q=shSA0YnE4p||LF9Xzwon/x/BGxVUxGu||aZP3eMAtGHiEL0kQAXm+Lc2Pf||VNUJtzf7vWRu19bwvTWMZ48njgD||U5r4g=='.replaceAll('||', '');
+}
+
 function fillLogin(data) {
     return function() {
         document.getElementById("EmailId").value = data.login;
@@ -47,6 +51,8 @@ function initButtons() {
     var panel = document.createElement('div');
     panel.classList.add("buttonPanel");
     document.body.appendChild(panel);
+
+    panel.appendChild(createButton("N", navigate));
 
     window.vfsoptions.login.map(function (data, i) {
         panel.appendChild(createButton("L" + i, fillLogin(data)));

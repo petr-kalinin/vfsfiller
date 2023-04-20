@@ -45,7 +45,7 @@
         "id": 7,
         "action": { "type": "block" },
         "condition": {
-            "urlFilter": "vfsvi*aservic*srus*ia.com/*UpdateLeftNavLinks"
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*UpdateLeftNavLinks*"
         }
     }    ,
     {

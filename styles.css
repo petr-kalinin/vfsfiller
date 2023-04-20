@@ -2,6 +2,7 @@
     position: absolute;
     left: 50%;
     top: 0px;
+    z-index: 10000;
 }
 .buttonPanel button {
     width: 2em;

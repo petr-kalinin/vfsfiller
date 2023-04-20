@@ -44,6 +44,9 @@ function fillData(customer) {
         document.getElementById("FirstName").value = customer.first_name;
         document.getElementById("LastName").value = customer.last_name;
         document.getElementById("GenderId").value = customer.gender;
+        if (customer.mobile) {
+            document.getElementById("Mobile").value = customer.mobile;
+        }
     }
 }
 

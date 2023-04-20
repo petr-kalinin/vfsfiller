@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*images/cube.gif"
+        }
+    },
+    {
+        "id": 2,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*GetLanguageCode"
+        }
+    },
+    {
+        "id": 3,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*img/ajax-loader.gif"
+        }
+    },
+    {
+        "id": 4,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*ValidatePasswordChangedDate"
+        }
+    },
+    {
+        "id": 5,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*flags/france.jpg"
+        }
+    },
+    {
+        "id": 6,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*PlaceholderDescription"
+        }
+    },
+    {
+        "id": 7,
+        "action": { "type": "block" },
+        "condition": {
+            "urlFilter": "vfsvi*aservic*srus*ia.com/*UpdateLeftNavLinks"
+        }
+    }
+]

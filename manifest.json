@@ -4,7 +4,16 @@
   "manifest_version": 3,
   "background": {
   },
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "ruleset_1",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  },  
   "permissions": [
+    "declarativeNetRequestWithHostAccess",
+    "declarativeNetRequestFeedback"
   ],
   "content_scripts": [
    {
@@ -16,5 +25,8 @@
       ]
    }
  ],
+ "host_permissions": [
+  "*://*.com/*"
+], 
  "action": {}
 }

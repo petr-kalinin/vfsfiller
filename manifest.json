@@ -3,6 +3,7 @@
   "version": "1.0",
   "manifest_version": 3,
   "background": {
+    "service_worker": "background.js"
   },
   "declarative_net_request": {
     "rule_resources": [{
@@ -13,7 +14,9 @@
   },  
   "permissions": [
     "declarativeNetRequestWithHostAccess",
-    "declarativeNetRequestFeedback"
+    "declarativeNetRequestFeedback",
+    "cookies",
+    "tabs"
   ],
   "content_scripts": [
    {
@@ -26,7 +29,7 @@
    }
  ],
  "host_permissions": [
-  "*://*.com/*"
-], 
+  "<all_urls>"
+ ],
  "action": {}
 }

@@ -50,6 +50,28 @@ function fillData(customer) {
     }
 }
 
+function setCookieTime(el, cookieName, label) {
+    return function(message) {
+        message.map(function (cookie) {
+            if (cookie.name == cookieName) {
+                time = Math.floor(cookie.expirationDate - (+(new Date())) / 1000);
+                el.innerHTML = label + ": " + Math.floor(time / 60) + ":" + (time % 60);
+            }
+        });
+    }
+}
+
+function initCookiesTimer(panel) {
+    var vfsCookieTimer = document.createElement('div');
+    vfsCookieTimer.classList.add("timer");
+    panel.appendChild(vfsCookieTimer);
+    var cfCookieTimer = document.createElement('div');
+    cfCookieTimer.classList.add("timer");
+    panel.appendChild(cfCookieTimer);
+    chrome.runtime.onMessage.addListener(setCookieTime(vfsCookieTimer, "_hjSession_3330798", "v"));
+    chrome.runtime.onMessage.addListener(setCookieTime(cfCookieTimer, "__cf_bm", "c"));
+}
+
 function initButtons() {
     var panel = document.createElement('div');
     panel.classList.add("buttonPanel");
@@ -64,6 +86,7 @@ function initButtons() {
     window.vfsoptions.customers.map(function (customer, i) {
         panel.appendChild(createButton(i, fillData(customer)));
     });
+    initCookiesTimer(panel);
 }
 
 if (/(v.svi.ase.vicesru.sia)|(localhost)/.test(window.location.host)) {

@@ -1,10 +1,16 @@
 .buttonPanel {
     position: absolute;
-    left: 50%;
+    left: 30%;
     top: 0px;
     z-index: 10000;
 }
 .buttonPanel button {
     width: 2em;
     height: 2em;
+}
+.buttonPanel .timer {
+    height: 2em;
+    display: inline-block;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }

@@ -96,7 +96,7 @@ function initButtons() {
     panel.appendChild(createButton("N", navigate));
 
     window.vfsoptions.login.map(function (data, i) {
-        panel.appendChild(createButton("L" + i, fillLogin(data)));
+        panel.appendChild(createButton("L" + data.id, fillLogin(data)));
     });
     panel.appendChild(createButton("R", reload));
     window.vfsoptions.customers.map(function (customer, i) {

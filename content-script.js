@@ -1,11 +1,20 @@
 function navigate() {
-    window.location.href = '/Global-Appoi||ntment/Account/Regi||steredLogin?q=shSA0YnE4p||LF9Xzwon/x/BGxVUxGu||aZP3eMAtGHiEL0kQAXm+Lc2Pf||VNUJtzf7vWRu19bwvTWMZ48njgD||U5r4g=='.replaceAll('||', '');
+    window.location.href = 'https://v||isa.vf||sglo||bal.com/ru||s/en/f||ra/login'.replaceAll('||', '');
+}
+
+function setValue(el, value) {
+    if (el) {
+        el.value = value;
+        el.dispatchEvent(new Event('input'));
+    }
 }
 
 function fillLogin(data) {
     return function() {
-        document.getElementById("EmailId").value = data.login;
-        document.getElementById("Password").value = data.password;
+        setValue(document.getElementById("EmailId"), data.login);
+        setValue(document.getElementById("Password"), data.password);
+        setValue(document.getElementById("mat-input-0"), data.login);
+        setValue(document.getElementById("mat-input-1"), data.password);
     }
 }
 
@@ -37,16 +46,45 @@ function reload() {
 
 function fillData(customer) {
     return function() {
-        document.getElementById("PassportNumber").value = customer.passport;
-        document.getElementById("DateOfBirth").value = customer.birth_date;
-        document.getElementById("PassportExpiryDate").value = customer.expiry;
-        document.getElementById("NationalityId").value = customer.nationality;
-        document.getElementById("FirstName").value = customer.first_name;
-        document.getElementById("LastName").value = customer.last_name;
-        document.getElementById("GenderId").value = customer.gender;
+        setValue(document.getElementById("PassportNumber"), customer.passport);
+        setValue(document.getElementById("DateOfBirth"), customer.birth_date);
+        setValue(document.getElementById("PassportExpiryDate"), customer.expiry);
+        setValue(document.getElementById("NationalityId"), customer.nationality);
+        setValue(document.getElementById("FirstName"), customer.first_name);
+        setValue(document.getElementById("LastName"), customer.last_name);
+        setValue(document.getElementById("GenderId"), customer.gender);
         if (customer.mobile) {
-            document.getElementById("Mobile").value = customer.mobile;
+            setValue(document.getElementById("Mobile"), customer.mobile);
         }
+        setValue(document.getElementById("mat-input-2"), customer.first_name);
+        setValue(document.getElementById("mat-input-8"), customer.first_name);
+        setValue(document.getElementById("mat-input-14"), customer.first_name);
+
+        setValue(document.getElementById("mat-input-3"), customer.last_name);
+        setValue(document.getElementById("mat-input-9"), customer.last_name);
+        setValue(document.getElementById("mat-input-15"), customer.last_name);
+
+        setValue(document.getElementById("dateOfBirth"), customer.birth_date);
+
+        setValue(document.getElementById("mat-input-4"), customer.passport);
+        setValue(document.getElementById("mat-input-10"), customer.passport);
+        setValue(document.getElementById("mat-input-16"), customer.passport);
+
+        setValue(document.getElementById("passportExpirtyDate"), customer.expiry);
+        //setValue(document.getElementById("NationalityId"), customer.nationality);
+        //setValue(document.getElementById("GenderId"), customer.gender);
+
+        setValue(document.getElementById("mat-input-5"), "7");
+        setValue(document.getElementById("mat-input-11"), "7");
+        setValue(document.getElementById("mat-input-17"), "7");
+
+        setValue(document.getElementById("mat-input-6"), customer.mobile);
+        setValue(document.getElementById("mat-input-12"), customer.mobile);
+        setValue(document.getElementById("mat-input-18"), customer.mobile);
+
+        setValue(document.getElementById("mat-input-7"), customer.email);
+        setValue(document.getElementById("mat-input-13"), customer.email);
+        setValue(document.getElementById("mat-input-19"), customer.email);
     }
 }
 
@@ -66,6 +104,6 @@ function initButtons() {
     });
 }
 
-if (/(v.svi.ase.vicesru.sia)|(localhost)/.test(window.location.host)) {
+if (/(v.svi.ase.vicesru.sia)|(localhost)|(vi.a.v.sglo.al.com)/.test(window.location.host)) {
     initButtons();
 }

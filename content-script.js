@@ -9,6 +9,16 @@ function setValue(el, value) {
     }
 }
 
+function setSelectValue(select, value) {
+    document.getElementById(select)?.click()
+    options = document.getElementsByTagName("mat-option");
+    Array.from(options).map((v) => {
+        if (v.innerText == value) {
+            v.click();
+        }
+    });
+}
+
 function fillLogin(data) {
     return function() {
         setValue(document.getElementById("EmailId"), data.login);
@@ -71,9 +81,17 @@ function fillData(customer) {
         setValue(document.getElementById("mat-input-16"), customer.passport);
 
         setValue(document.getElementById("passportExpirtyDate"), customer.expiry);
-        //setValue(document.getElementById("NationalityId"), customer.nationality);
-        //setValue(document.getElementById("GenderId"), customer.gender);
 
+        gender_text = (customer.gender == 1 ? "Male": "Female");
+        setSelectValue("mat-select-6", gender_text);
+        setSelectValue("mat-select-10", gender_text);
+        setSelectValue("mat-select-14", gender_text);
+
+        setSelectValue("mat-select-8", "RUSSIAN FEDERATION");
+        setSelectValue("mat-select-12", "RUSSIAN FEDERATION");
+        setSelectValue("mat-select-13", "RUSSIAN FEDERATION");
+        setSelectValue("mat-select-16", "RUSSIAN FEDERATION");
+        
         setValue(document.getElementById("mat-input-5"), "7");
         setValue(document.getElementById("mat-input-11"), "7");
         setValue(document.getElementById("mat-input-17"), "7");
@@ -110,6 +128,45 @@ function initCookiesTimer(panel) {
     chrome.runtime.onMessage.addListener(setCookieTime(cfCookieTimer, "__cf_bm", "c"));
 }
 
+function getSlotsUrl(center, category) {
+    email = encodeURIComponent(sessionStorage.logged_email);
+    return `https://li||ft-api.vf||sglo||bal.com/app||oint||ment/slots?countryCode=rus&missionCode=fra&centerCode=${center}&loginUser=${email}&visaCategoryCode=${category}&languageCode=en-US&applicantsCount=1&days=180&fromDate=29%2F04%2F2023&slotType=2&toDate=26%2F10%2F2023`.replaceAll("||", "");
+}
+
+async function runRequest(center, category) {
+    url = getSlotsUrl(center, category);
+    console.log(url);
+    try {
+        result = await (await fetch(url)).json()
+        if (result[0].mission !== null) {
+            console.log("!!!");
+        }
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+async function runRequests() {
+    // SHST_Business
+    if (!window.timerRunning) {
+        return;
+    }
+    console.log("Run requests");
+    runRequest("FMOS", "ShSt_Vaccinated");
+    setTimeout(runRequests, 30 * 1000);
+}
+
+function toggleRequests() {
+    if (window.timerRunning) {
+        window.timerRunning = false;
+        window.timerButton.innerHTML = "T";
+    } else {
+        window.timerRunning = true;
+        window.timerButton.innerHTML = "T+";
+        runRequests();
+    }
+}
+
 function initButtons() {
     var panel = document.createElement('div');
     panel.classList.add("buttonPanel");
@@ -124,6 +181,8 @@ function initButtons() {
     window.vfsoptions.customers.map(function (customer, i) {
         panel.appendChild(createButton(i, fillData(customer)));
     });
+    window.timerButton = createButton("T", toggleRequests)
+    panel.appendChild(window.timerButton);
     initCookiesTimer(panel);
 }
 

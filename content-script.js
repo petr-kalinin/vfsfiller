@@ -2,6 +2,25 @@ function navigate() {
     window.location.href = 'https://v||isa.vf||sglo||bal.com/ru||s/en/f||ra/login'.replaceAll('||', '');
 }
 
+function findFields(caption) {
+    var xpath = "//div[contains(text(),'" + caption + "')]";
+    var captionElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    var group = captionElement.parentElement;
+    var input = document.evaluate(".//input", group, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+    if (input.snapshotLength > 0) {
+        return input;
+    }
+    var select = document.evaluate(".//mat-select", group, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);  
+    if (select.snapshotLength > 0) {
+        return select;
+    }
+}
+
+function findField(caption) {
+    var fields = findFields(caption);
+    return fields.snapshotItem(0);
+}
+
 function setValue(el, value) {
     if (el) {
         el.value = value;
@@ -10,10 +29,10 @@ function setValue(el, value) {
 }
 
 function setSelectValue(select, value) {
-    document.getElementById(select)?.click()
+    select.click()
     options = document.getElementsByTagName("mat-option");
     Array.from(options).map((v) => {
-        if (v.innerText == value) {
+        if (v.innerText.includes(value)) {
             v.click();
         }
     });
@@ -66,43 +85,17 @@ function fillData(customer) {
         if (customer.mobile) {
             setValue(document.getElementById("Mobile"), customer.mobile);
         }
-        setValue(document.getElementById("mat-input-2"), customer.first_name);
-        setValue(document.getElementById("mat-input-8"), customer.first_name);
-        setValue(document.getElementById("mat-input-14"), customer.first_name);
-
-        setValue(document.getElementById("mat-input-3"), customer.last_name);
-        setValue(document.getElementById("mat-input-9"), customer.last_name);
-        setValue(document.getElementById("mat-input-15"), customer.last_name);
-
-        setValue(document.getElementById("dateOfBirth"), customer.birth_date);
-
-        setValue(document.getElementById("mat-input-4"), customer.passport);
-        setValue(document.getElementById("mat-input-10"), customer.passport);
-        setValue(document.getElementById("mat-input-16"), customer.passport);
-
-        setValue(document.getElementById("passportExpirtyDate"), customer.expiry);
-
+        setValue(findField("First Name"), customer.first_name);
+        setValue(findField("Last Name"), customer.last_name);
+        setValue(findField("Date Of Birth"), customer.birth_date);
+        setValue(findField("Passport Number"), customer.passport);
+        setValue(findField("Passport Expiry Date"), customer.expiry);
         gender_text = (customer.gender == 1 ? "Male": "Female");
-        setSelectValue("mat-select-6", gender_text);
-        setSelectValue("mat-select-10", gender_text);
-        setSelectValue("mat-select-14", gender_text);
-
-        setSelectValue("mat-select-8", "RUSSIAN FEDERATION");
-        setSelectValue("mat-select-12", "RUSSIAN FEDERATION");
-        setSelectValue("mat-select-13", "RUSSIAN FEDERATION");
-        setSelectValue("mat-select-16", "RUSSIAN FEDERATION");
-        
-        setValue(document.getElementById("mat-input-5"), "7");
-        setValue(document.getElementById("mat-input-11"), "7");
-        setValue(document.getElementById("mat-input-17"), "7");
-
-        setValue(document.getElementById("mat-input-6"), customer.mobile);
-        setValue(document.getElementById("mat-input-12"), customer.mobile);
-        setValue(document.getElementById("mat-input-18"), customer.mobile);
-
-        setValue(document.getElementById("mat-input-7"), customer.email);
-        setValue(document.getElementById("mat-input-13"), customer.email);
-        setValue(document.getElementById("mat-input-19"), customer.email);
+        setSelectValue(findField("Gender"), gender_text);
+        setSelectValue(findField("Current Nationality"), "RUSSIAN FEDERATION");
+        setValue(findFields("Contact number").snapshotItem(0), "7");
+        setValue(findFields("Contact number").snapshotItem(1), customer.mobile);
+        setValue(findField("Email"), customer.email);
     }
 }
 

@@ -179,6 +179,15 @@ function initButtons() {
     initCookiesTimer(panel);
 }
 
+function continueSession() {
+    var xpath = "//button/span[contains(text(),'Stay Connected')]";
+    var el = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    if (el) {
+        el.click();
+    }
+}
+
 if (/(v.svi.ase.vicesru.sia)|(localhost)|(vi.a.v.sglo.al.com)/.test(window.location.host)) {
     initButtons();
+    setInterval(continueSession, 20 * 1000);
 }
